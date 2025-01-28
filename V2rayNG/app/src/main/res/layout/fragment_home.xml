@@ -180,7 +180,7 @@
                     </LinearLayout>
 
                     <TextView
-                        id="@+id/homeUploadSpeedTV"
+                        android:id="@+id/homeUploadSpeedTV"
                         style="@style/LargMed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            id="@+id/gameModeInfoIV"
+                            android:id="@+id/gameModeInfoIV"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:layout_gravity="center"
@@ -277,9 +277,10 @@
                 android:background="@color/grays400" />
 
             <LinearLayout
-                android:id="@+id/selectedConfigLL"
+                android:id="@+id/selectedConfigEmptyLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -295,6 +296,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="6dp"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_noconfig"
                         app:riv_corner_radius="28dp" />
 
@@ -322,6 +324,113 @@
                     android:layout_height="18dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_arrow_right" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/selectedConfigFillLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_gravity="center"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/grays400"
+                    >
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/freeConfigFlagRIV"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_kr_flags"
+                        android:layout_gravity="center"
+                        app:riv_corner_radius="20dp"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/selectedConfigNameTV"
+                            style="@style/Heading4Med"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="South Korea"
+                            android:textColor="@color/white" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/delayTV"
+                            style="@style/XSmallMed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="28ms"
+                            android:textColor="@color/grays300" />
+
+                        <TextView
+                            style="@style/XSmallMed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text=" . "
+                            android:textColor="@color/grays300" />
+
+                        <TextView
+                            android:id="@+id/tapToPingTV"
+                            style="@style/XSmallMed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Tap to Ping Again"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/primary500" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/ipConfigSelectedTV"
+                    style="@style/LargReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="IP 14.01.24.0.1"
+                    android:textColor="@color/white" />
+
+
 
             </LinearLayout>
 
@@ -354,6 +463,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/titleStatusConnectionTV"
                     style="@style/LargMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -365,6 +475,7 @@
 
 
                 <TextView
+                    android:id="@+id/subtitleStatusConnectionTV"
                     style="@style/SmallMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -12,6 +12,7 @@ import com.v2ray.ang.AppConfig.ANG_PACKAGE
 import com.v2ray.ang.R
 import com.v2ray.ang.databinding.ActivityLogcatBinding
 import com.v2ray.ang.extension.toast
+import com.v2ray.ang.fragments.logs.LogsFragment
 import com.v2ray.ang.util.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ class LogcatActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     var logsetsAll: MutableList<String> = mutableListOf()
     var logsets: MutableList<String> = mutableListOf()
-    private val adapter by lazy { LogcatRecyclerAdapter(this) }
+    private val adapter by lazy { LogcatRecyclerAdapter(LogsFragment()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

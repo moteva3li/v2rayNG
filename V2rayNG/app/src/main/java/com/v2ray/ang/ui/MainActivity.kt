@@ -118,7 +118,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         binding.layoutTest.setOnClickListener {
             if (mainViewModel.isRunning.value == true) {
-                setTestState(getString(R.string.connection_test_testing))
+                homeFragment.setTestState(getString(R.string.connection_test_testing))
                 mainViewModel.testCurrentServerRealPing()
             } else {
 //                tv_test_state.text = getString(R.string.connection_test_fail)
@@ -166,7 +166,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     fun initFragments(){
 
-        homeFragment = HomeFragment()
+        homeFragment = HomeFragment(this)
         configsFragment = ConfigsFragment()
         logsFragment = LogsFragment()
         settingFragment = SettingFragment()
@@ -257,6 +257,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     fun setLogsFragment(){
+        logsFragment.onRefresh()
         deselectAll()
         binding.bottomNavLogsIv.setImageResource(R.drawable.ic_logs_selected)
         binding.bottomNavLogsTv.setTextColor(resources.getColor(R.color.primary600))
@@ -302,18 +303,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 adapter.notifyDataSetChanged()
             }
         }
-        mainViewModel.updateTestResultAction.observe(this) { setTestState(it) }
+        mainViewModel.updateTestResultAction.observe(this) { homeFragment.setTestState(it) }
         mainViewModel.isRunning.observe(this) { isRunning ->
             adapter.isRunning = isRunning
             if (isRunning) {
                 binding.fab.setImageResource(R.drawable.ic_stop_24dp)
                 binding.fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.color_fab_active))
-                setTestState(getString(R.string.connection_connected))
+                homeFragment.setTestState(getString(R.string.connection_connected))
                 binding.layoutTest.isFocusable = true
             } else {
                 binding.fab.setImageResource(R.drawable.ic_play_24dp)
                 binding.fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.color_fab_inactive))
-                setTestState(getString(R.string.connection_not_connected))
+                homeFragment.setTestState(getString(R.string.connection_not_connected))
                 binding.layoutTest.isFocusable = false
             }
         }

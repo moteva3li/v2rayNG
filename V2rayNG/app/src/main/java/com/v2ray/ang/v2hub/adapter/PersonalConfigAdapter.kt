@@ -164,6 +164,7 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
                 val selected = MmkvManager.getSelectServer()
                 if (guid != selected) {
                     MmkvManager.setSelectServer(guid)
+                    mActivity.homeFragment.setupPageDetails()
                     if (!TextUtils.isEmpty(selected)) {
                         notifyItemChanged(mActivity.mainViewModel.getPosition(selected.orEmpty()))
                     }
