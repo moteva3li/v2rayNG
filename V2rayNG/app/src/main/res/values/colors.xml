@@ -10,4 +10,36 @@
 
     <color name="colorPrimary">#F5F5F5</color>
     <color name="colorAccent">#000000</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FAFAFA</color>
+
+
+    <color name="primary600">#FC7E10</color>
+    <color name="primary500">#FEC16B</color>
+    <color name="primary400">#FFCB98</color>
+    <color name="primary300">#FFE0BD</color>
+    <color name="primary200">#FFF3DF</color>
+    <color name="primary100">#FFF6EF</color>
+
+    <color name="grays600">#131313</color>
+    <color name="grays500">#222222</color>
+    <color name="grays400">#676767</color>
+    <color name="grays300">#969696</color>
+    <color name="grays200">#C9C9C9</color>
+    <color name="grays100">#E4E4E4</color>
+
+    <color name="errorColor">#F42F32</color>
+    <color name="errorShade">#FF7476</color>
+    <color name="successColor">#30CE4F</color>
+    <color name="pinkColor">#F568A1</color>
+    <color name="warningColor">#F6D900</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+
 </resources>

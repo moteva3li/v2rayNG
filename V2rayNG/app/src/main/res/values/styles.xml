@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="Heading1Bold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="Heading1Med">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="Heading2Bold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Heading2Med">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Heading3Bold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Heading3Med">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Heading4Bold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Heading4Med">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <style name="LargeBold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="LargMed">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="LargReg">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SmallBold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SmallSemiBold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SmallMed">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SmallReg">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="XSmallBold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="XSmallSemiBold">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="XSmallMed">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="XSmallReg">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.Theme.V2Hub.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.V2Hub.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+</resources>

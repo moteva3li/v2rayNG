@@ -28,6 +28,11 @@ mockitoMockitoInline = "4.0.0"
 flexbox = "3.0.0"
 preferenceKtx = "1.2.1"
 recyclerview = "1.4.0"
+switchButton = "0.0.3"
+roundedimageview = "2.3.0"
+glide = "4.16.0"
+loggingInterceptor = "4.11.0"
+retrofit = "2.9.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
@@ -62,6 +67,14 @@ mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
+switch-button = { module = "com.github.zcweng:switch-button", version.ref = "switchButton" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+roundedimageview = { module = "com.makeramen:roundedimageview", version.ref = "roundedimageview" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "retrofit" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

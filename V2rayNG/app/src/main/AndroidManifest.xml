@@ -76,6 +76,13 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
+
+        <activity
+            android:name=".v2hub.activities.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".v2hub.activities.AboutUsActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.ServerActivity"
             android:exported="false"

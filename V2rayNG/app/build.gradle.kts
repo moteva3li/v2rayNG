@@ -134,9 +134,10 @@ android {
 }
 
 dependencies {
-    // Core Libraries
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar", "*.jar"))))
 
+    // Core Libraries
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar", "*.jar")))) // Changed from `fileTree` to `fileTree()`
+    
     // AndroidX Core Libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -188,4 +189,21 @@ dependencies {
     testImplementation(libs.org.mockito.mockito.inline)
     testImplementation(libs.mockito.kotlin)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    //v2Hub implementation
+    //glide
+    implementation(libs.glide)
+
+    //switch
+    implementation(libs.switch.button)
+
+    //rounded imageview
+    implementation(libs.roundedimageview)
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.adapter.rxjava2)
+
 }

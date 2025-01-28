@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -48,15 +49,20 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.drakeet.support.toast.ToastCompat
+import com.v2ray.ang.fragments.configs.ConfigsFragment
+import com.v2ray.ang.fragments.home.HomeFragment
+import com.v2ray.ang.fragments.logs.LogsFragment
+import com.v2ray.ang.fragments.setting.SettingFragment
 import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
     private val adapter by lazy { MainRecyclerAdapter(this) }
-    private val requestVpnPermission = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    val requestVpnPermission = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == RESULT_OK) {
             startV2Ray()
         }
@@ -81,11 +87,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private var mItemTouchHelper: ItemTouchHelper? = null
     val mainViewModel: MainViewModel by viewModels()
 
+    lateinit var homeFragment: HomeFragment
+    lateinit var configsFragment: ConfigsFragment
+    lateinit var logsFragment: LogsFragment
+    lateinit var settingFragment: SettingFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         title = getString(R.string.title_server)
         setSupportActionBar(binding.toolbar)
+
+        initFragments()
+        setupBottomNav()
+        bottomNavColorChange()
 
         binding.fab.setOnClickListener {
             if (mainViewModel.isRunning.value == true) {
@@ -148,6 +163,136 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
+
+    fun initFragments(){
+
+        homeFragment = HomeFragment()
+        configsFragment = ConfigsFragment()
+        logsFragment = LogsFragment()
+        settingFragment = SettingFragment()
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frameLayout, homeFragment , "homeFragment")
+            .add(R.id.frameLayout, configsFragment , "configsFragment")
+            .add(R.id.frameLayout, logsFragment , "logsFragment")
+            .add(R.id.frameLayout, settingFragment , "settingFragment")
+            .hide(configsFragment)
+            .hide(logsFragment)
+            .hide(settingFragment)
+            .commit()
+
+    }
+
+    fun bottomNavColorChange(){
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.grays600)
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightNavigationBars = true
+        }
+    }
+
+
+    override fun onBackPressed() {
+        when {
+            homeFragment.isVisible -> {
+                // If the homeFragment is currently visible, proceed with the default back press behavior
+                super.onBackPressed()
+            }
+            else -> {
+                // If any other fragment is visible, navigate back to homeFragment
+                setHomeFragment()
+            }
+        }
+    }
+
+    fun setupBottomNav() {
+
+
+        binding.bottomNavCV.setOnClickListener {
+
+        }
+
+        binding.bottomNavHomeLl.setOnClickListener {
+            setHomeFragment()
+        }
+
+        binding.bottomNavConfigsLl.setOnClickListener {
+            setConfigsFragment()
+        }
+
+        binding.bottomNavLogsLl.setOnClickListener {
+            setLogsFragment()
+        }
+
+        binding.bottomNavSettingLl.setOnClickListener {
+            setSettingFragment()
+        }
+
+    }
+
+    fun setHomeFragment(){
+        deselectAll()
+        binding.bottomNavHomeIv.setImageResource(R.drawable.ic_home_selected)
+        binding.bottomNavHomeTv.setTextColor(resources.getColor(R.color.primary600))
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+            .hide(configsFragment)
+            .hide(logsFragment)
+            .hide(settingFragment)
+            .show(homeFragment)
+            .commit()
+
+    }
+
+    fun setConfigsFragment(){
+        deselectAll()
+        binding.bottomNavConfigsIv.setImageResource(R.drawable.ic_configs_selected)
+        binding.bottomNavConfigsTv.setTextColor(resources.getColor(R.color.primary600))
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+            .hide(homeFragment)
+            .hide(logsFragment)
+            .hide(settingFragment)
+            .show(configsFragment)
+            .commit()
+    }
+
+    fun setLogsFragment(){
+        deselectAll()
+        binding.bottomNavLogsIv.setImageResource(R.drawable.ic_logs_selected)
+        binding.bottomNavLogsTv.setTextColor(resources.getColor(R.color.primary600))
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+            .hide(homeFragment)
+            .hide(configsFragment)
+            .hide(settingFragment)
+            .show(logsFragment)
+            .commit()
+    }
+
+    fun setSettingFragment(){
+        deselectAll()
+        binding.bottomNavSettingIv.setImageResource(R.drawable.ic_setting_selected)
+        binding.bottomNavSettingTv.setTextColor(resources.getColor(R.color.primary600))
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+            .hide(homeFragment)
+            .hide(configsFragment)
+            .hide(logsFragment)
+            .show(settingFragment)
+            .commit()
+    }
+
+    fun deselectAll() {
+        binding.bottomNavHomeIv.setImageResource(R.drawable.ic_home_deselected)
+        binding.bottomNavConfigsIv.setImageResource(R.drawable.ic_configs_deselected)
+        binding.bottomNavLogsIv.setImageResource(R.drawable.ic_logs_deselected)
+        binding.bottomNavSettingIv.setImageResource(R.drawable.ic_setting_deselected)
+        binding.bottomNavHomeTv.setTextColor(resources.getColor(R.color.grays300))
+        binding.bottomNavConfigsTv.setTextColor(resources.getColor(R.color.grays300))
+        binding.bottomNavLogsTv.setTextColor(resources.getColor(R.color.grays300))
+        binding.bottomNavSettingTv.setTextColor(resources.getColor(R.color.grays300))
+    }
+
 
     private fun setupViewModel() {
         mainViewModel.updateListAction.observe(this) { index ->

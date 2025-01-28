@@ -38,7 +38,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import libv2ray.Libv2ray
 import libv2ray.V2RayPoint
-import libv2ray.V2RayVPNServiceSupportsSet
+import libv2ray.V2RayVPNServiceSupportsSet 
 import java.lang.ref.SoftReference
 import kotlin.math.min
 
