@@ -24,6 +24,11 @@ class PrivacyPolicyActivity : AppCompatActivity() {
             insets
         }
 
+        binding.backIV.setOnClickListener {
+            onBackPressed()
+        }
+
+
     }
 
 }

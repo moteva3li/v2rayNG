@@ -298,7 +298,7 @@
     <string name="routing_settings_outbound_tag" translatable="false">outboundTag</string>
 
     <string name="connection_test_pending">Check Connectivity</string>
-    <string name="connection_test_testing"> </string>
+    <string name="connection_test_testing">Checking…</string>
     <string name="connection_test_testing_count">Testing %d configurations…</string>
     <string name="connection_test_available">%dms</string>
     <string name="connection_test_error">Fail to detect internet connection: %s</string>

@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.AppConfig.VPN
 import com.v2ray.ang.R
@@ -17,7 +15,6 @@ import com.v2ray.ang.databinding.FragmentHomeBinding
 import com.v2ray.ang.handler.MmkvManager
 import com.v2ray.ang.ui.MainActivity
 import com.v2ray.ang.util.Utils
-import com.v2ray.ang.viewmodel.MainViewModel
 
 
 class HomeFragment(mainActivity: MainActivity) : Fragment() {
@@ -44,24 +41,31 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
     }
 
     fun setupPageDetails(){
-        val config = MmkvManager.decodeServerConfig(MmkvManager.getSelectServer()!!)
-        if(config != null){
-            binding.selectedConfigEmptyLL.visibility = View.GONE
-            binding.selectedConfigFillLL.visibility = View.VISIBLE
-            binding.selectedConfigNameTV.text = config.remarks
-            binding.ipConfigSelectedTV.text = "IP " + "${
-                config.server?.let {
-                    if (it.contains(":"))
-                        it.split(":").take(2).joinToString(":", postfix = ":***")
-                    else
-                        it.split('.').dropLast(1).joinToString(".", postfix = ".***")
-                }
-            } : ${config.serverPort}"
 
-        }else{
-            binding.selectedConfigEmptyLL.visibility = View.VISIBLE
-            binding.selectedConfigFillLL.visibility = View.GONE
+
+        try {
+            val config = MmkvManager.decodeServerConfig(MmkvManager.getSelectServer()!!)
+            if(config != null){
+                binding.selectedConfigEmptyLL.visibility = View.GONE
+                binding.selectedConfigFillLL.visibility = View.VISIBLE
+                binding.selectedConfigNameTV.text = config.remarks
+                binding.ipConfigSelectedTV.text = "IP " + "${
+                    config.server?.let {
+                        if (it.contains(":"))
+                            it.split(":").take(2).joinToString(":", postfix = ":***")
+                        else
+                            it.split('.').dropLast(1).joinToString(".", postfix = ".***")
+                    }
+                } : ${config.serverPort}"
+
+            }else{
+                binding.selectedConfigEmptyLL.visibility = View.VISIBLE
+                binding.selectedConfigFillLL.visibility = View.GONE
+            }
+        }catch (e : Exception){
+
         }
+
 
     }
 
@@ -72,33 +76,11 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
         }
 
         binding.tapToPingTV.setOnClickListener {
-            if (mActivity.mainViewModel.isRunning.value == true) {
-                setTestState(getString(R.string.connection_test_testing))
-                mActivity.mainViewModel.testCurrentServerRealPing()
-            } else {
-//                tv_test_state.text = getString(R.string.connection_test_fail)
-            }
+            mActivity.testPing()
         }
 
         binding.vpnPowerCV.setOnClickListener {
-            if (mActivity.mainViewModel.isRunning.value == true) {
-                Utils.stopVService(requireActivity())
-            } else if ((MmkvManager.decodeSettingsString(AppConfig.PREF_MODE) ?: VPN) == VPN) {
-                val intent = VpnService.prepare(requireActivity())
-                if (intent == null) {
-                    (requireActivity() as MainActivity).startV2Ray()
-                } else {
-                    (requireActivity() as MainActivity).requestVpnPermission.launch(intent)
-                }
-            } else {
-                (requireActivity() as MainActivity).startV2Ray()
-            }
-            if (isON){
-                turnVpnOff()
-            }else{
-                turnVpnOn()
-            }
-
+            mActivity.fabClick()
         }
 
     }
@@ -109,6 +91,19 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
 
     fun turnVpnOn(){
         isON = true
+
+        mActivity.networkSpeedMonitor.startMonitoring(1000,{
+            binding.homeDownloadSpeedTV.text = it.downloadSpeed.toString() + " Mbps"
+            binding.homeUploadSpeedTV.text = it.uploadSpeed.toString() + " Mbps"
+        })
+
+        mActivity.vpnTimer.resetTimer()
+        mActivity.vpnTimer.startTimer { timeFormat ->
+            binding.homeConnectedTimerTV.text = "${timeFormat.hours}:${timeFormat.minutes}:${timeFormat.seconds}"
+        }
+
+        binding.homeConnectionStatusTV.text = "Conected"
+
         binding.lequidBackIV.visibility = View.VISIBLE
         binding.lequidFrontIV.visibility = View.VISIBLE
         binding.vpnPowerCV.setCardBackgroundColor(resources.getColor(R.color.grays600))
@@ -130,10 +125,16 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
             binding.titleStatusConnectionTV.text = "Connected"
             binding.subtitleStatusConnectionTV.text = "Fast & Secure"
         }, 2000)
+
     }
 
     fun turnVpnOff(){
         isON = false
+
+        mActivity.networkSpeedMonitor.stopMonitoring()
+        mActivity.vpnTimer.stopTimer()
+        binding.homeConnectionStatusTV.text = "Disconected"
+
         binding.vpnPowerCV.setCardBackgroundColor(resources.getColor(R.color.grays600))
         binding.lequidBackIV.visibility = View.VISIBLE
         binding.lequidFrontIV.visibility = View.VISIBLE

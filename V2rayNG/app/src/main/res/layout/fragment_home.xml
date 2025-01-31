@@ -360,6 +360,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -369,7 +370,7 @@
 
                         <TextView
                             android:id="@+id/selectedConfigNameTV"
-                            style="@style/Heading4Med"
+                            style="@style/LargMed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="South Korea"
@@ -386,32 +387,15 @@
 
 
                         <TextView
-                            android:id="@+id/delayTV"
-                            style="@style/XSmallMed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="28ms"
-                            android:textColor="@color/grays300" />
-
-                        <TextView
-                            style="@style/XSmallMed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text=" . "
-                            android:textColor="@color/grays300" />
-
-                        <TextView
-                            android:id="@+id/tapToPingTV"
+                            android:id="@+id/ipConfigSelectedTV"
                             style="@style/XSmallMed"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:text="Tap to Ping Again"
-                            android:paddingVertical="4dp"
-                            android:textColor="@color/primary500" />
+                            android:layout_gravity="center"
+                            android:text="IP 14.01.24.0.1"
+                            android:textColor="@color/grays300" />
+
 
 
                     </LinearLayout>
@@ -419,18 +403,35 @@
 
                 </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                >
+
 
                 <TextView
-                    android:id="@+id/ipConfigSelectedTV"
-                    style="@style/LargReg"
-                    android:layout_width="match_parent"
+                    android:id="@+id/delayTV"
+                    style="@style/XSmallMed"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:text="IP 14.01.24.0.1"
-                    android:textColor="@color/white" />
+                    android:text="28ms"
+                    android:textColor="@color/grays300" />
+
+                <TextView
+                    android:id="@+id/tapToPingTV"
+                    style="@style/XSmallMed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Tap to Ping Again"
+                    android:paddingVertical="6dp"
+                    android:textColor="@color/primary500" />
 
 
+            </LinearLayout>
 
             </LinearLayout>
 

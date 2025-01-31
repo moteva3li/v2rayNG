@@ -25,6 +25,10 @@ class AboutUsActivity : AppCompatActivity() {
             insets
         }
 
+        binding.backIV.setOnClickListener {
+            onBackPressed()
+        }
+
     }
 
 

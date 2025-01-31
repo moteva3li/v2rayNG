@@ -16,10 +16,10 @@ class LogcatRecyclerAdapter(var logsFragment: LogsFragment) : RecyclerView.Adapt
         // Split the log entry into timestamp and message
         val logParts = content.split(" ", limit = 10)
         val timestamp = logParts.getOrNull(1) ?: ""
-        val message = logParts.getOrNull(6) ?: content
+        val message = logParts.getOrNull(9) ?: content
 
         // Set the timestamp and message in the ViewHolder
-        holder.itemSubSettingBinding.logTimeTv.text = timestamp
+        holder.itemSubSettingBinding.logTimeTv.text = timestamp.subSequence(0,8)
         holder.itemSubSettingBinding.logContentTv.text = message
 
     }

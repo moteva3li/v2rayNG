@@ -9,11 +9,12 @@
     tools:context=".v2hub.activities.PrivacyPolicyActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="58dp"
+        android:id="@+id/backIV"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:padding="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,10 +27,10 @@
         android:layout_height="wrap_content"
         android:text="Privacy Policy"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/backIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/backIV" />
 
 
     <TextView

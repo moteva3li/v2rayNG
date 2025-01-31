@@ -53,9 +53,15 @@ import com.v2ray.ang.fragments.configs.ConfigsFragment
 import com.v2ray.ang.fragments.home.HomeFragment
 import com.v2ray.ang.fragments.logs.LogsFragment
 import com.v2ray.ang.fragments.setting.SettingFragment
+import com.v2ray.ang.v2hub.utility.NetworkSpeedMonitor
+import com.v2ray.ang.v2hub.utility.VpnTimer
 import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    val networkSpeedMonitor = NetworkSpeedMonitor()
+
+    val vpnTimer = VpnTimer()
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -103,26 +109,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         bottomNavColorChange()
 
         binding.fab.setOnClickListener {
-            if (mainViewModel.isRunning.value == true) {
-                Utils.stopVService(this)
-            } else if ((MmkvManager.decodeSettingsString(AppConfig.PREF_MODE) ?: VPN) == VPN) {
-                val intent = VpnService.prepare(this)
-                if (intent == null) {
-                    startV2Ray()
-                } else {
-                    requestVpnPermission.launch(intent)
-                }
-            } else {
-                startV2Ray()
-            }
+            //fabClick()
         }
         binding.layoutTest.setOnClickListener {
-            if (mainViewModel.isRunning.value == true) {
-                homeFragment.setTestState(getString(R.string.connection_test_testing))
-                mainViewModel.testCurrentServerRealPing()
-            } else {
-//                tv_test_state.text = getString(R.string.connection_test_fail)
-            }
+            //testPing()
         }
 
         binding.recyclerView.setHasFixedSize(true)
@@ -162,6 +152,32 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         })
+    }
+
+    fun testPing(){
+
+        if (mainViewModel.isRunning.value == true) {
+            homeFragment.setTestState(getString(R.string.connection_test_testing))
+            mainViewModel.testCurrentServerRealPing()
+        } else {
+//                tv_test_state.text = getString(R.string.connection_test_fail)
+        }
+
+    }
+
+    fun fabClick(){
+        if (mainViewModel.isRunning.value == true) {
+            Utils.stopVService(this)
+        } else if ((MmkvManager.decodeSettingsString(AppConfig.PREF_MODE) ?: VPN) == VPN) {
+            val intent = VpnService.prepare(this)
+            if (intent == null) {
+                startV2Ray()
+            } else {
+                requestVpnPermission.launch(intent)
+            }
+        } else {
+            startV2Ray()
+        }
     }
 
     fun initFragments(){
@@ -311,11 +327,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 binding.fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.color_fab_active))
                 homeFragment.setTestState(getString(R.string.connection_connected))
                 binding.layoutTest.isFocusable = true
+                homeFragment.turnVpnOn()
             } else {
                 binding.fab.setImageResource(R.drawable.ic_play_24dp)
                 binding.fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.color_fab_inactive))
                 homeFragment.setTestState(getString(R.string.connection_not_connected))
                 binding.layoutTest.isFocusable = false
+                homeFragment.turnVpnOff()
             }
         }
         mainViewModel.startListenBroadcast()
@@ -377,6 +395,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             .subscribe {
                 startV2Ray()
             }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkSpeedMonitor.stopMonitoring()
     }
 
     public override fun onResume() {
