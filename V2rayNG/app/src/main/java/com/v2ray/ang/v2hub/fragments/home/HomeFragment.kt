@@ -21,7 +21,7 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
 
     lateinit var binding : FragmentHomeBinding
     var mActivity = mainActivity
-    var isON = false
+    var firstInitForOffAnim = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,8 +90,6 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
     }
 
     fun turnVpnOn(){
-        isON = true
-
         mActivity.networkSpeedMonitor.startMonitoring(1000,{
             binding.homeDownloadSpeedTV.text = it.downloadSpeed.toString() + " Mbps"
             binding.homeUploadSpeedTV.text = it.uploadSpeed.toString() + " Mbps"
@@ -129,8 +127,10 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
     }
 
     fun turnVpnOff(){
-        isON = false
-
+        if (firstInitForOffAnim){
+            firstInitForOffAnim = false
+            return
+        }
         mActivity.networkSpeedMonitor.stopMonitoring()
         mActivity.vpnTimer.stopTimer()
         binding.homeConnectionStatusTV.text = "Disconected"

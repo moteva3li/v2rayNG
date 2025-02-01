@@ -9,6 +9,7 @@ import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -152,6 +153,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         })
+
+        Log.i("erfannnnnnnnnnnnnnooooo", "onCreate: ${mainViewModel.serversCache}")
+
     }
 
     fun testPing(){
@@ -183,7 +187,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     fun initFragments(){
 
         homeFragment = HomeFragment(this)
-        configsFragment = ConfigsFragment()
+        configsFragment = ConfigsFragment(this)
         logsFragment = LogsFragment()
         settingFragment = SettingFragment()
 
@@ -314,9 +318,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun setupViewModel() {
         mainViewModel.updateListAction.observe(this) { index ->
             if (index >= 0) {
-                adapter.notifyItemChanged(index)
+                configsFragment.adapter.notifyItemChanged(index)
             } else {
-                adapter.notifyDataSetChanged()
+                configsFragment.adapter.notifyDataSetChanged()
             }
         }
         mainViewModel.updateTestResultAction.observe(this) { homeFragment.setTestState(it) }

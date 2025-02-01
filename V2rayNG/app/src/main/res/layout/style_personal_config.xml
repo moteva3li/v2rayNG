@@ -34,8 +34,9 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -46,9 +47,12 @@
 
                     <TextView
                         android:id="@+id/tv_name"
-                        style="@style/Heading4Med"
-                        android:layout_width="wrap_content"
+                        style="@style/LargMed"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         android:text="Config 3"
                         android:textColor="@color/white" />
 
@@ -57,8 +61,8 @@
                         style="@style/XSmallReg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginStart="8dp"
+                        android:maxLines="1"
                         android:text="KCP"
                         android:textColor="@color/grays300" />
 
@@ -66,8 +70,8 @@
                         style="@style/XSmallMed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text=" ."
+                        android:maxLines="1"
+                        android:text=" . "
                         android:textColor="@color/grays300" />
 
                     <TextView
@@ -75,8 +79,7 @@
                         style="@style/XSmallReg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="4dp"
+                        android:maxLines="1"
                         android:text="28 ms"
                         android:textColor="@color/successColor" />
 

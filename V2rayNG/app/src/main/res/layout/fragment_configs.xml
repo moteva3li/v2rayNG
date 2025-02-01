@@ -136,12 +136,14 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/checkPingsIconIV"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_check_ping" />
 
             <TextView
+                android:id="@+id/checkPingsTV"
                 style="@style/SmallMed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,10 +154,19 @@
                 android:textColor="@color/white" />
 
             <ImageView
+                android:id="@+id/checkPingsInfoIV"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_info" />
+
+            <ProgressBar
+                android:id="@+id/checkPingsInfoPB"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:indeterminateTint="@color/grays600"
+                android:visibility="gone"
+                android:layout_gravity="center" />
 
 
         </LinearLayout>
@@ -190,7 +201,7 @@
                 android:src="@drawable/ic_sort" />
 
             <TextView
-                android:id="@+id/sortedBtTV"
+                android:id="@+id/sortedByTV"
                 style="@style/SmallMed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

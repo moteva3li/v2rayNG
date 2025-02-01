@@ -16,6 +16,7 @@ import com.v2ray.ang.databinding.ItemQrcodeBinding
 import com.v2ray.ang.databinding.ItemRecyclerFooterBinding
 import com.v2ray.ang.databinding.StylePersonalConfigBinding
 import com.v2ray.ang.dto.EConfigType
+import com.v2ray.ang.dto.ServersCache
 import com.v2ray.ang.extension.toast
 import com.v2ray.ang.handler.AngConfigManager
 import com.v2ray.ang.handler.MmkvManager
@@ -23,7 +24,6 @@ import com.v2ray.ang.helper.ItemTouchHelperAdapter
 import com.v2ray.ang.helper.ItemTouchHelperViewHolder
 import com.v2ray.ang.service.V2RayServiceManager
 import com.v2ray.ang.ui.MainActivity
-import com.v2ray.ang.ui.MainRecyclerAdapter
 import com.v2ray.ang.ui.ServerActivity
 import com.v2ray.ang.ui.ServerCustomConfigActivity
 import com.v2ray.ang.util.Utils
@@ -64,11 +64,27 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
             holder.itemMainBinding.tvName.text = profile.remarks
             holder.itemView.setBackgroundColor(Color.TRANSPARENT)
             holder.itemMainBinding.tvTestResult.text = aff?.getTestDelayString().orEmpty()
-            if ((aff?.testDelayMillis ?: 0L) < 0L) {
-                holder.itemMainBinding.tvTestResult.setTextColor(ContextCompat.getColor(mActivity, R.color.colorPingRed))
-            } else {
-                holder.itemMainBinding.tvTestResult.setTextColor(ContextCompat.getColor(mActivity, R.color.colorPing))
-            }
+
+            val testDelay = aff?.testDelayMillis ?: 0L
+            holder.itemMainBinding.tvTestResult.setTextColor(
+                when {
+                    testDelay < 0L -> ContextCompat.getColor(mActivity, R.color.errorShade)
+                    testDelay in 1L..480L -> ContextCompat.getColor(mActivity, R.color.successColor)
+                    testDelay in 481L..750L -> ContextCompat.getColor(mActivity, R.color.warningColor)
+                    else -> ContextCompat.getColor(mActivity, R.color.errorShade)
+                }
+            )
+
+//            if ((aff?.testDelayMillis ?: 0L) < 0L) {
+//                holder.itemMainBinding.tvTestResult.setTextColor(ContextCompat.getColor(mActivity, R.color.errorShade))
+//            } else if((aff?.testDelayMillis ?: 0L) < 480L && (aff?.testDelayMillis ?: 0L) > 1L) {
+//                holder.itemMainBinding.tvTestResult.setTextColor(ContextCompat.getColor(mActivity, R.color.successColor))
+//            }else if ((aff?.testDelayMillis ?: 0L) < 750L && (aff?.testDelayMillis ?: 0L) > 481L){
+//                holder.itemMainBinding.tvTestResult.setTextColor(ContextCompat.getColor(mActivity, R.color.warningColor))
+//            }else{
+//                holder.itemMainBinding.tvTestResult.setTextColor(ContextCompat.getColor(mActivity, R.color.errorShade))
+//            }
+
             if (guid == MmkvManager.getSelectServer()) {
                 holder.itemMainBinding.layoutIndicator.visibility = View.VISIBLE
             } else {

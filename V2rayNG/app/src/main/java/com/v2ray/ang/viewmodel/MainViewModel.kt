@@ -319,6 +319,51 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         MmkvManager.encodeServerList(serverList)
     }
 
+    fun sortByName() {
+        data class ServerNames(var guid: String, var name: String)
+
+        val serverNames = mutableListOf<ServerNames>()
+        val serverList = MmkvManager.decodeServerList()
+        var x = 0
+        serverList.forEach { key ->
+            val name = serversCache[x].profile.remarks
+            x++
+            serverNames.add(ServerNames(key,name))
+        }
+        serverNames.sortBy { it.name }
+
+        serverNames.forEach {
+            serverList.remove(it.guid)
+            serverList.add(it.guid)
+        }
+
+        MmkvManager.encodeServerList(serverList)
+
+    }
+
+    fun sortByTime() {
+        data class ServerTime(var guid: String, var time: Long)
+
+        val serverNames = mutableListOf<ServerTime>()
+        val serverList = MmkvManager.decodeServerList()
+        var x = 0
+        serverList.forEach { key ->
+            val name = serversCache[x].profile.addedTime
+            x++
+            serverNames.add(ServerTime(key,name))
+        }
+        serverNames.sortBy { it.time }
+
+        serverNames.forEach {
+            serverList.remove(it.guid)
+            serverList.add(it.guid)
+        }
+        serverList.reverse()
+
+        MmkvManager.encodeServerList(serverList)
+    }
+
+
     fun initAssets(assets: AssetManager) {
         viewModelScope.launch(Dispatchers.Default) {
             SettingsManager.initAssets(getApplication<AngApplication>(), assets)
