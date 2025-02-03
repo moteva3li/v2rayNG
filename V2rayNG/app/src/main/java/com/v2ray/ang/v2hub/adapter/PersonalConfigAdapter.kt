@@ -1,7 +1,10 @@
 package com.v2ray.ang.v2hub.adapter
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.provider.ContactsContract
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +12,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.v2ray.ang.AngApplication.Companion.application
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.R
+import com.v2ray.ang.databinding.DialogShareOptionsBinding
 import com.v2ray.ang.databinding.ItemQrcodeBinding
 import com.v2ray.ang.databinding.ItemRecyclerFooterBinding
 import com.v2ray.ang.databinding.StylePersonalConfigBinding
 import com.v2ray.ang.dto.EConfigType
+import com.v2ray.ang.dto.ProfileItem
 import com.v2ray.ang.dto.ServersCache
 import com.v2ray.ang.extension.toast
 import com.v2ray.ang.handler.AngConfigManager
@@ -117,34 +123,7 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
             holder.itemMainBinding.tvStatistics.text = strState
 
             holder.itemMainBinding.layoutShare.setOnClickListener {
-                AlertDialog.Builder(mActivity).setItems(shareOptions.toTypedArray()) { _, i ->
-                    try {
-                        when (i) {
-                            0 -> {
-                                if (profile.configType == EConfigType.CUSTOM) {
-                                    shareFullContent(guid)
-                                } else {
-                                    val ivBinding = ItemQrcodeBinding.inflate(LayoutInflater.from(mActivity))
-                                    ivBinding.ivQcode.setImageBitmap(AngConfigManager.share2QRCode(guid))
-                                    AlertDialog.Builder(mActivity).setView(ivBinding.root).show()
-                                }
-                            }
-
-                            1 -> {
-                                if (AngConfigManager.share2Clipboard(mActivity, guid) == 0) {
-                                    mActivity.toast(R.string.toast_success)
-                                } else {
-                                    mActivity.toast(R.string.toast_failure)
-                                }
-                            }
-
-                            2 -> shareFullContent(guid)
-                            else -> mActivity.toast("else")
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }.show()
+                showShareOptionsDialog(guid, profile)
             }
 
             holder.itemMainBinding.layoutEdit.setOnClickListener {
@@ -157,6 +136,7 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
                     mActivity.startActivity(intent.setClass(mActivity, ServerActivity::class.java))
                 }
             }
+
             holder.itemMainBinding.layoutRemove.setOnClickListener {
                 if (guid != MmkvManager.getSelectServer()) {
                     if (MmkvManager.decodeSettingsBool(AppConfig.PREF_CONFIRM_REMOVE) == true) {
@@ -207,6 +187,49 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
             }
         }
     }
+
+    private fun showShareOptionsDialog(guid: String, profile: ProfileItem) {
+        val dialog = Dialog(mActivity)
+        val binding = DialogShareOptionsBinding.inflate(LayoutInflater.from(mActivity))
+        dialog.setContentView(binding.root)
+
+        // Make the dialog background rounded and transparent
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        binding.tvShowQr.setOnClickListener {
+            dialog.dismiss()
+            if (profile.configType == EConfigType.CUSTOM) {
+                shareFullContent(guid)
+            } else {
+                val ivBinding = ItemQrcodeBinding.inflate(LayoutInflater.from(mActivity))
+                ivBinding.ivQcode.setImageBitmap(AngConfigManager.share2QRCode(guid))
+                AlertDialog.Builder(mActivity).setView(ivBinding.root).show()
+            }
+        }
+
+        binding.tvCopyUri.setOnClickListener {
+            dialog.dismiss()
+            if (AngConfigManager.share2Clipboard(mActivity, guid) == 0) {
+                mActivity.toast(R.string.toast_success)
+            } else {
+                mActivity.toast(R.string.toast_failure)
+            }
+        }
+
+        binding.tvCopyV2HubJson.setOnClickListener {
+            dialog.dismiss()
+            shareFullContent(guid)
+        }
+
+//        binding.tvLockAndShare.setOnClickListener {
+//            dialog.dismiss()
+//            mActivity.toast("else")
+//        }
+
+        dialog.show()
+    }
+
 
     private fun shareFullContent(guid: String) {
         if (AngConfigManager.shareFullContent2Clipboard(mActivity, guid) == 0) {

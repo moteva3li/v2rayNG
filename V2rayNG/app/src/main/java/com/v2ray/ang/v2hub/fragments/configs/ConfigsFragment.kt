@@ -58,7 +58,6 @@ class ConfigsFragment(mainActivity: MainActivity) : Fragment() {
         //set adapter to recycler
         binding.configsRV.adapter = adapter
         binding.configsRV.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        //adapter.filterServers(SharedPrefrences().getSortedByFilter(requireContext())!!)
     }
 
     fun setupOnClikListeners() {
