@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+        <shape android:shape="rectangle" >
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+
+    <item android:drawable="@drawable/ic_spinner_pointer" android:gravity="end|center_vertical" android:width="28dp" android:height="28dp"/>
+</layer-list>

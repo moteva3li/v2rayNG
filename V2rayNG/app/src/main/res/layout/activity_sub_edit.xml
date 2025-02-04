@@ -39,12 +39,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:text="@string/sub_setting_remarks" />
 
                 <EditText
                     android:id="@+id/et_remarks"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_height"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="8dp"
+                    style="@style/SmallReg"
+                    android:padding="10dp"
+                    android:textColor="@color/grays100"
+                    android:background="@drawable/back_edit_text_server_configs"
                     android:inputType="text" />
 
             </LinearLayout>
@@ -58,6 +66,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:text="@string/sub_setting_url" />
 
 
@@ -65,6 +75,12 @@
                     android:id="@+id/et_url"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="8dp"
+                    style="@style/SmallReg"
+                    android:padding="10dp"
+                    android:textColor="@color/grays100"
+                    android:background="@drawable/back_edit_text_server_configs"
                     android:gravity="top"
                     android:inputType="textMultiLine"
                     android:maxLines="10"
@@ -83,12 +99,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:text="@string/sub_setting_filter" />
 
                 <EditText
                     android:id="@+id/et_filter"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_height"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="8dp"
+                    style="@style/SmallReg"
+                    android:padding="10dp"
+                    android:textColor="@color/grays100"
+                    android:background="@drawable/back_edit_text_server_configs"
                     android:inputType="text" />
 
             </LinearLayout>
@@ -102,6 +126,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:layout_weight="1.0"
                     android:text="@string/sub_setting_enable" />
 
@@ -124,6 +150,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:layout_weight="1.0"
                     android:text="@string/sub_auto_update" />
 
@@ -147,12 +175,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:text="@string/sub_setting_pre_profile" />
 
                 <EditText
                     android:id="@+id/et_pre_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_height"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="8dp"
+                    style="@style/SmallReg"
+                    android:padding="10dp"
+                    android:textColor="@color/grays100"
+                    android:background="@drawable/back_edit_text_server_configs"
                     android:hint="@string/sub_setting_pre_profile_tip"
                     android:inputType="text" />
 
@@ -167,12 +203,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/LargMed"
+                    android:textColor="@color/white"
                     android:text="@string/sub_setting_next_profile" />
 
                 <EditText
                     android:id="@+id/et_next_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_height"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="8dp"
+                    style="@style/SmallReg"
+                    android:padding="10dp"
+                    android:textColor="@color/grays100"
+                    android:background="@drawable/back_edit_text_server_configs"
                     android:hint="@string/sub_setting_pre_profile_tip"
                     android:inputType="text" />
 

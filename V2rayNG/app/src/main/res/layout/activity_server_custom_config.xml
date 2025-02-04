@@ -47,12 +47,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/LargMed"
+                android:textColor="@color/white"
                 android:text="@string/server_lab_remarks" />
 
             <EditText
                 android:id="@+id/et_remarks"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_height"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="8dp"
+                style="@style/SmallReg"
+                android:padding="10dp"
+                android:textColor="@color/grays100"
+                android:background="@drawable/back_edit_text_server_configs"
                 android:inputType="text" />
 
         </LinearLayout>
@@ -60,6 +68,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -72,9 +81,15 @@
             <com.blacksquircle.ui.editorkit.widget.TextProcessor
                 android:id="@+id/editor"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/layout_margin_top_height"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="8dp"
+                style="@style/SmallReg"
+                android:padding="10dp"
+                android:textColor="@color/grays100"
+                android:background="@drawable/back_edit_text_server_configs"
                 android:gravity="top|start" />
+
         </LinearLayout>
 
     </LinearLayout>

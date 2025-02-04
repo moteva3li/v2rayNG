@@ -9,10 +9,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.AppConfig.ANG_PACKAGE
 import com.v2ray.ang.AppConfig.DEFAULT_PORT
@@ -130,6 +132,10 @@ class ServerActivity : BaseActivity() {
     private val et_bandwidth_up: EditText? by lazy { findViewById(R.id.et_bandwidth_up) }
     private val et_extra: EditText? by lazy { findViewById(R.id.et_extra) }
     private val layout_extra: LinearLayout? by lazy { findViewById(R.id.layout_extra) }
+
+    private val serverConfigRemarkTitleTV: TextView? by lazy { findViewById(R.id.serverActivityTitleTV) }
+    private val serverBackIV: ImageView? by lazy { findViewById(R.id.serverActivityBackIV) }
+    private val serverSaveCV : CardView? by lazy { findViewById(R.id.serverActivitySaveCV) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -307,6 +313,10 @@ class ServerActivity : BaseActivity() {
      * binding selected server config
      */
     private fun bindingServer(config: ProfileItem): Boolean {
+
+        serverConfigRemarkTitleTV?.text = config?.remarks
+        serverBackIV?.setOnClickListener { onBackPressed() }
+        serverSaveCV?.setOnClickListener { saveServer() }
 
         et_remarks.text = Utils.getEditable(config.remarks)
         et_address.text = Utils.getEditable(config.server.orEmpty())

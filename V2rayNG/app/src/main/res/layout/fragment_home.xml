@@ -371,9 +371,10 @@
                         <TextView
                             android:id="@+id/selectedConfigNameTV"
                             style="@style/LargMed"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="South Korea"
+                            android:ellipsize="end"
                             android:textColor="@color/white" />
 
 
@@ -414,9 +415,12 @@
                 <TextView
                     android:id="@+id/delayTV"
                     style="@style/XSmallMed"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:gravity="center"
+                    android:ellipsize="end"
                     android:text="28ms"
                     android:textColor="@color/grays300" />
 

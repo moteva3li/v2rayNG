@@ -16,6 +16,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_stream_security" />
 
         <Spinner
@@ -37,12 +39,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_sni" />
 
         <EditText
             android:id="@+id/et_sni"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="8dp"
+            style="@style/SmallReg"
+            android:padding="10dp"
+            android:textColor="@color/grays100"
+            android:background="@drawable/back_edit_text_server_configs"
             android:inputType="text"
             android:nextFocusDown="@+id/sp_stream_fingerprint" />
 
@@ -58,6 +68,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_allow_insecure" />
 
         <Spinner
@@ -76,12 +88,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/LargMed"
+                android:textColor="@color/white"
                 android:text="@string/server_lab_stream_pinsha256" />
 
             <EditText
                 android:id="@+id/et_pinsha256"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_height"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="8dp"
+                style="@style/SmallReg"
+                android:padding="10dp"
+                android:textColor="@color/grays100"
+                android:background="@drawable/back_edit_text_server_configs"
                 android:inputType="text" />
 
         </LinearLayout>

@@ -13,6 +13,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_more_function"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
     </LinearLayout>
@@ -26,6 +28,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_network" />
 
         <Spinner
@@ -45,6 +49,8 @@
             android:id="@+id/sp_header_type_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_head_type" />
 
         <Spinner
@@ -63,12 +69,20 @@
             android:id="@+id/tv_request_host"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_request_host" />
 
         <EditText
             android:id="@+id/et_request_host"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="8dp"
+            style="@style/SmallReg"
+            android:padding="10dp"
+            android:textColor="@color/grays100"
+            android:background="@drawable/back_edit_text_server_configs"
             android:inputType="text" />
     </LinearLayout>
 
@@ -83,12 +97,20 @@
             android:id="@+id/tv_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_path" />
 
         <EditText
             android:id="@+id/et_path"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="8dp"
+            style="@style/SmallReg"
+            android:padding="10dp"
+            android:textColor="@color/grays100"
+            android:background="@drawable/back_edit_text_server_configs"
             android:inputType="text" />
     </LinearLayout>
 
@@ -102,12 +124,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/LargMed"
+            android:textColor="@color/white"
             android:text="@string/server_lab_xhttp_extra" />
 
         <EditText
             android:id="@+id/et_extra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="8dp"
+            style="@style/SmallReg"
+            android:padding="10dp"
+            android:textColor="@color/grays100"
+            android:background="@drawable/back_edit_text_server_configs"
             android:gravity="top"
             android:inputType="textMultiLine"
             android:maxLines="20"
