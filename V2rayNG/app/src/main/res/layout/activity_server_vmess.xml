@@ -100,8 +100,12 @@
             <Spinner
                 android:id="@+id/sp_security"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_height"
-                android:entries="@array/securitys" />
+                android:layout_height="50dp"
+                android:background="@drawable/back_spinner_server_configs"
+                android:popupBackground="@color/grays600"
+                android:theme="@style/CustomSpinnerStyle"
+                android:entries="@array/securitys"/>
+
         </LinearLayout>
 
             <include layout="@layout/layout_transport" />

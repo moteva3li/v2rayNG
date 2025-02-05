@@ -23,7 +23,10 @@
         <Spinner
             android:id="@+id/sp_stream_security"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="50dp"
+            android:background="@drawable/back_spinner_server_configs"
+            android:popupBackground="@color/grays600"
+            android:theme="@style/CustomSpinnerStyle"
             android:entries="@array/streamsecurityxs"
             android:nextFocusDown="@+id/et_sni" />
 
@@ -75,7 +78,10 @@
         <Spinner
             android:id="@+id/sp_stream_fingerprint"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="50dp"
+            android:background="@drawable/back_spinner_server_configs"
+            android:popupBackground="@color/grays600"
+            android:theme="@style/CustomSpinnerStyle"
             android:entries="@array/streamsecurity_utls"
             android:nextFocusDown="@+id/sp_stream_alpn" />
 
@@ -98,7 +104,10 @@
         <Spinner
             android:id="@+id/sp_stream_alpn"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="50dp"
+            android:background="@drawable/back_spinner_server_configs"
+            android:popupBackground="@color/grays600"
+            android:theme="@style/CustomSpinnerStyle"
             android:entries="@array/streamsecurity_alpn"
             android:nextFocusDown="@+id/sp_allow_insecure" />
 

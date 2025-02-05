@@ -1,6 +1,7 @@
 package com.v2ray.ang.fragments.logs
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -75,6 +76,8 @@ class LogsFragment() : Fragment() , SwipeRefreshLayout.OnRefreshListener {
                 }
 
                 val allText = process.inputStream.bufferedReader().use { it.readLines() }.reversed()
+
+                Log.i("ermooooooooooooooooo", "getLogcat: ${allText}")
                 launch(Dispatchers.Main) {
                     logsetsAll = allText.toMutableList()
                     logsets = allText.toMutableList()

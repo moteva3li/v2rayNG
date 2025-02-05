@@ -125,5 +125,10 @@
         <item name="android:background">#666666</item>
     </style>
 
+    <style name="CustomSpinnerStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/primary600</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 
 </resources>

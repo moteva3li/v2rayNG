@@ -8,11 +8,16 @@ import android.net.Uri
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -35,6 +40,8 @@ import com.v2ray.ang.AppConfig.VPN
 import com.v2ray.ang.R
 import com.v2ray.ang.databinding.ActivityMainBinding
 import com.v2ray.ang.dto.EConfigType
+import com.v2ray.ang.dto.ProfileItem
+import com.v2ray.ang.dto.ServersCache
 import com.v2ray.ang.extension.toast
 import com.v2ray.ang.handler.AngConfigManager
 import com.v2ray.ang.handler.MigrateManager
@@ -314,6 +321,51 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding.bottomNavSettingTv.setTextColor(resources.getColor(R.color.grays300))
     }
 
+    fun showUndoToast(guid : String, profile: ProfileItem, position: Int) {
+        val toastCard = binding.customToastSuccessfullyDeletedCV
+        val undoButton = binding.undoButton
+
+
+        toastCard.alpha = 0f
+        toastCard.visibility = View.VISIBLE
+
+        toastCard.animate()
+            .alpha(1f)
+            .setDuration(300)
+            .setInterpolator(DecelerateInterpolator())
+            .start()
+
+        val handler = Handler(Looper.getMainLooper())
+        val removeToastRunnable = Runnable {
+            toastCard.animate()
+                .alpha(0f)
+                .setDuration(300)
+                .setInterpolator(AccelerateInterpolator())
+                .withEndAction { toastCard.visibility = View.GONE }
+                .start()
+        }
+
+
+        handler.postDelayed(removeToastRunnable, 3000)
+
+
+        undoButton.setOnClickListener {
+            handler.removeCallbacks(removeToastRunnable)
+            toastCard.animate()
+                .alpha(0f)
+                .setDuration(300)
+                .setInterpolator(AccelerateInterpolator())
+                .withEndAction { toastCard.visibility = View.GONE }
+                .start()
+            // Add undo logic here (restore deleted config)
+            mainViewModel.serversCache.add(position, ServersCache(guid, profile))
+            MmkvManager.encodeServerConfig(guid, profile,position)
+            Log.i("errrrrrrrrrrrrrrrr", "onBindViewHolder: ${guid + profile + position}")
+            configsFragment.adapter.notifyItemInserted(position)
+            toastCard.visibility = View.GONE
+        }
+
+    }
 
     private fun setupViewModel() {
         mainViewModel.updateListAction.observe(this) { index ->

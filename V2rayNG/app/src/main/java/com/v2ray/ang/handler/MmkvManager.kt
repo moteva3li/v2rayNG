@@ -85,12 +85,12 @@ object MmkvManager {
 //        return JsonUtil.fromJson(json, ProfileLiteItem::class.java)
 //    }
 
-    fun encodeServerConfig(guid: String, config: ProfileItem): String {
+    fun encodeServerConfig(guid: String, config: ProfileItem , index : Int = 0): String {
         val key = guid.ifBlank { Utils.getUuid() }
         profileFullStorage.encode(key, JsonUtil.toJson(config))
         val serverList = decodeServerList()
         if (!serverList.contains(key)) {
-            serverList.add(0, key)
+            serverList.add(index, key)
             encodeServerList(serverList)
             if (getSelectServer().isNullOrBlank()) {
                 mainStorage.encode(KEY_SELECTED_SERVER, key)

@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.provider.ContactsContract
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -142,6 +143,7 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
                     if (MmkvManager.decodeSettingsBool(AppConfig.PREF_CONFIRM_REMOVE) == true) {
                         AlertDialog.Builder(mActivity).setMessage(R.string.del_config_comfirm)
                             .setPositiveButton(android.R.string.ok) { _, _ ->
+                                mActivity.showUndoToast(guid, profile, position)
                                 removeServer(guid, position)
                             }
                             .setNegativeButton(android.R.string.cancel) { _, _ ->
@@ -149,6 +151,8 @@ class PersonalConfigAdapter(val activity: MainActivity) : RecyclerView.Adapter<P
                             }
                             .show()
                     } else {
+                        mActivity.showUndoToast(guid, profile, position)
+                        Log.i("errrrrrrrrrrrrrrrr", "onBindViewHolder: ${guid + profile + position}")
                         removeServer(guid, position)
                     }
                 } else {

@@ -183,4 +183,9 @@ class HomeFragment(mainActivity: MainActivity) : Fragment() {
         heightAnimator.start()
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupPageDetails()
+    }
+
 }

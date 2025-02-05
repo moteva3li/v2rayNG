@@ -164,7 +164,7 @@ class ServerActivity : BaseActivity() {
                 val types = transportTypes(networks[position])
                 sp_header_type?.isEnabled = types.size > 1
                 val adapter =
-                    ArrayAdapter(this@ServerActivity, android.R.layout.simple_spinner_item, types)
+                    ArrayAdapter(this@ServerActivity, R.layout.style_spinner_item, types)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 sp_header_type?.adapter = adapter
                 sp_header_type_title?.text =

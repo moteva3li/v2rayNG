@@ -75,7 +75,10 @@
         <Spinner
             android:id="@+id/sp_allow_insecure"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_height"
+            android:layout_height="50dp"
+            android:background="@drawable/back_spinner_server_configs"
+            android:popupBackground="@color/grays600"
+            android:theme="@style/CustomSpinnerStyle"
             android:entries="@array/allowinsecures" />
 
 
