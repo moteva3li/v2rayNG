@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/qrScannerIV"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/ic_qr_scanner"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/addConfigIV"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_add_config"
         app:layout_constraintBottom_toBottomOf="@+id/textView"

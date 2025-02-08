@@ -61,13 +61,14 @@ class ConfigsFragment(mainActivity: MainActivity) : Fragment() {
     }
 
     fun setupOnClikListeners() {
+
+        binding.qrScannerIV.setOnClickListener { mActivity.importQRcode(true) }
         binding.sortingCV.setOnClickListener { showSortByPopup(it) }
         binding.addConfigIV.setOnClickListener { showAddConfigPopup(it) }
         binding.tabFreeCV.setOnClickListener { freeTabs() }
         binding.tabPersonalCV.setOnClickListener { personalTabs() }
-        binding.checkPingsCV.setOnClickListener {
-            chekingPingConfigs()
-        }
+        binding.checkPingsCV.setOnClickListener { chekingPingConfigs() }
+
     }
 
     fun chekingPingConfigs() {
@@ -207,18 +208,22 @@ class ConfigsFragment(mainActivity: MainActivity) : Fragment() {
         }
 
         popupView.findViewById<TextView>(R.id.importConfig).setOnClickListener {
+            mActivity.importClipboard()
             addConfigPopup.dismiss()
         }
 
         popupView.findViewById<TextView>(R.id.importUrl).setOnClickListener {
+            mActivity.importConfigCustomUrlClipboard()
             addConfigPopup.dismiss()
         }
 
         popupView.findViewById<TextView>(R.id.importJson).setOnClickListener {
+            mActivity.importConfigCustomLocal()
             addConfigPopup.dismiss()
         }
 
         popupView.findViewById<TextView>(R.id.scanQr).setOnClickListener {
+            mActivity.importQRcode(true)
             addConfigPopup.dismiss()
         }
 

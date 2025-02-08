@@ -25,8 +25,13 @@ class ScannerActivity : BaseActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (MmkvManager.decodeSettingsBool(AppConfig.PREF_START_SCAN_IMMEDIATE) == true) {
+//        if (MmkvManager.decodeSettingsBool(AppConfig.PREF_START_SCAN_IMMEDIATE) == true) {
+//            launchScan()
+//        }
+        try {
             launchScan()
+        }catch (e : Exception){
+
         }
     }
 

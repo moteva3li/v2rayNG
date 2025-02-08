@@ -116,6 +116,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setupBottomNav()
         bottomNavColorChange()
 
+        binding.bottomNavLl.setOnClickListener {
+
+        }
+
         binding.fab.setOnClickListener {
             //fabClick()
         }
@@ -467,28 +471,28 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onPause()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-
-        val searchItem = menu.findItem(R.id.search_view)
-        if (searchItem != null) {
-            val searchView = searchItem.actionView as SearchView
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean = false
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    mainViewModel.filterConfig(newText.orEmpty())
-                    return false
-                }
-            })
-
-            searchView.setOnCloseListener {
-                mainViewModel.filterConfig("")
-                false
-            }
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.menu_main, menu)
+//
+//        val searchItem = menu.findItem(R.id.search_view)
+//        if (searchItem != null) {
+//            val searchView = searchItem.actionView as SearchView
+//            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//                override fun onQueryTextSubmit(query: String?): Boolean = false
+//
+//                override fun onQueryTextChange(newText: String?): Boolean {
+//                    mainViewModel.filterConfig(newText.orEmpty())
+//                    return false
+//                }
+//            })
+//
+//            searchView.setOnCloseListener {
+//                mainViewModel.filterConfig("")
+//                false
+//            }
+//        }
+//        return super.onCreateOptionsMenu(menu)
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.import_qrcode -> {
@@ -686,7 +690,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     /**
      * import config from qrcode
      */
-    private fun importQRcode(forConfig: Boolean): Boolean {
+    fun importQRcode(forConfig: Boolean): Boolean {
 //        try {
 //            startActivityForResult(Intent("com.google.zxing.client.android.SCAN")
 //                    .addCategory(Intent.CATEGORY_DEFAULT)
@@ -722,7 +726,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     /**
      * import config from clipboard
      */
-    private fun importClipboard()
+    fun importClipboard()
             : Boolean {
         try {
             val clipboard = Utils.getClipboard(this)
@@ -783,7 +787,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     /**
      * import config from local config file
      */
-    private fun importConfigCustomLocal(): Boolean {
+    fun importConfigCustomLocal(): Boolean {
         try {
             showFileChooser()
         } catch (e: Exception) {
@@ -793,7 +797,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
-    private fun importConfigCustomUrlClipboard()
+    fun importConfigCustomUrlClipboard()
             : Boolean {
         try {
             val url = Utils.getClipboard(this)
