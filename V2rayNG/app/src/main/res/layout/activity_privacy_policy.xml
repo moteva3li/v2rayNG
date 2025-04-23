@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/Heading3Med"
+        style="@style/LargMed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Privacy Policy"
@@ -34,7 +34,7 @@
 
 
     <TextView
-        style="@style/LargMed"
+        style="@style/SmallMed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"

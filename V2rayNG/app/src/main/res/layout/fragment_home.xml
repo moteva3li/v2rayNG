@@ -13,7 +13,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/sf_pro_display_medium"
         android:text="V2"
@@ -38,7 +38,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="26dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/grays500"
         app:cardCornerRadius="16dp"
@@ -65,7 +65,7 @@
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:text="00:00:00"
                     android:textColor="@color/white"
-                    android:textSize="32sp"
+                    style="@style/LargeBold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +76,7 @@
 
                 <TextView
                     android:id="@+id/homeConnectionStatusTV"
-                    style="@style/LargMed"
+                    style="@style/SmallMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -115,7 +115,7 @@
                             android:src="@drawable/ic_download" />
 
                         <TextView
-                            style="@style/SmallMed"
+                            style="@style/XSmallMed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -131,7 +131,7 @@
 
                     <TextView
                         android:id="@+id/homeDownloadSpeedTV"
-                        style="@style/LargMed"
+                        style="@style/SmallMed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -165,7 +165,7 @@
                             android:src="@drawable/ic_upload" />
 
                         <TextView
-                            style="@style/SmallMed"
+                            style="@style/XSmallMed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -181,7 +181,7 @@
 
                     <TextView
                         android:id="@+id/homeUploadSpeedTV"
-                        style="@style/LargMed"
+                        style="@style/SmallMed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -218,7 +218,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/LargMed"
+                            style="@style/SmallMed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -238,7 +238,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/XSmallMed"
+                        style="@style/XSmallReg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lower ping for smoother gaming"
@@ -303,7 +303,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    style="@style/LargMed"
+                    style="@style/SmallMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -370,7 +370,7 @@
 
                         <TextView
                             android:id="@+id/selectedConfigNameTV"
-                            style="@style/LargMed"
+                            style="@style/SmallMed"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="South Korea"
@@ -389,7 +389,7 @@
 
                         <TextView
                             android:id="@+id/ipConfigSelectedTV"
-                            style="@style/XSmallMed"
+                            style="@style/XSmallReg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -414,7 +414,7 @@
 
                 <TextView
                     android:id="@+id/delayTV"
-                    style="@style/XSmallMed"
+                    style="@style/XSmallReg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -446,7 +446,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginHorizontal="16dp"
         app:cardBackgroundColor="@color/grays500"
         app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
@@ -469,7 +469,7 @@
 
                 <TextView
                     android:id="@+id/titleStatusConnectionTV"
-                    style="@style/LargMed"
+                    style="@style/SmallMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -481,7 +481,7 @@
 
                 <TextView
                     android:id="@+id/subtitleStatusConnectionTV"
-                    style="@style/SmallMed"
+                    style="@style/XSmallMed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

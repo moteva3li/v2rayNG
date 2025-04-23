@@ -36,7 +36,7 @@
                 android:text="Sort By Ping"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                style="@style/SmallMed"/>
+                style="@style/XSmallMed"/>
             
             <ImageView
                 android:id="@+id/sortByPingIV"
@@ -71,7 +71,7 @@
                 android:text="Sort By Time"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                style="@style/SmallMed"/>
+                style="@style/XSmallMed"/>
 
             <ImageView
                 android:id="@+id/sortByTimeIV"
@@ -106,7 +106,7 @@
                 android:text="Sort By Name"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                style="@style/SmallMed"/>
+                style="@style/XSmallMed"/>
 
             <ImageView
                 android:id="@+id/sortByNameIV"

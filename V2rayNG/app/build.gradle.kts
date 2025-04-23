@@ -2,15 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.jaredsburrows.license")
+    alias(libs.plugins.google.services)
 }
 
 android {
-    namespace = "com.v2ray.ang"
+    namespace = "pey.vpn.net"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.v2ray.ang"
-        minSdk = 21
+        applicationId = "pey.vpn.net"
+        minSdk = 23
         targetSdk = 35
         versionCode = 629
         versionName = "1.9.33"
@@ -205,5 +206,11 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     implementation(libs.adapter.rxjava2)
+
+    //firebase FMC
+    implementation(libs.firebase.auth)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
 
 }

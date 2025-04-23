@@ -111,6 +111,7 @@
                         android:textColor="@color/grays300" />
 
                     <TextView
+                        android:id="@+id/freeConfigPingTV"
                         style="@style/XSmallReg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
